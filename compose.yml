@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  api2mqtt:
+    image: "api2mqtt"
+    restart: always
+    container_name: api2mqtt
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - MQTT_SERVER=${MQTT_SERVER}
+      - REG_OPEN=${REG_OPEN}
+      - TZ=${TZ}
+    volumes:
+      - "./app/data:/app/data"
+      - "./app/logs:/app/logs"
+    ports:
+      - 8009:8009
+    labels:
+      - com.centurylinklabs.watchtower.enable=false
